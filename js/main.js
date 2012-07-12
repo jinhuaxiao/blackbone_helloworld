@@ -53,7 +53,7 @@ require(["jquery", "backbone"], function($,Backbone) {
 				'click span.delete': 'remove'
 			},
 			initialize: function() {
-				_.bindAll(this,'render');
+				_.bindAll(this,'render','unrender','swap','remove');// every function that uses 'this' as the current object should be in here
 				this.model.bind('change',this.render);
 				this.model.bind('remove',this.unrender);
 			},
@@ -110,7 +110,7 @@ require(["jquery", "backbone"], function($,Backbone) {
 					model:item
 				});
 				//$('ul').append("<li>"+item.get('part1')+' '+item.get('part2')+"</li>");
-				$('ul').append(itemView.render().el);
+				$('ul',this.el).append(itemView.render().el);
 			}
 
 		});
